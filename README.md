@@ -1,6 +1,6 @@
 # Bictochat
 
-![Logo][https://elinux.org/File:BictochatLogo.jpg]
+![Logo](https://elinux.org/File:BictochatLogo.jpg)
 
 Final project for ECE434: Embedded Linux at Rose-Hulman Institute of Technology
 
