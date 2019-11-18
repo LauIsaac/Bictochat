@@ -1,0 +1,52 @@
+C
+# A demo of LCD/TFT SCREEN DISPLAY with touch screen
+# A "penprint" is made to screen wherever the pen is touched to screen
+
+from PIL import Image
+from PIL import ImageDraw
+from PIL import ImageFont
+
+from lib_tft24T import TFT24T
+import Adafruit_BBIO.GPIO as GPIO
+#GPIO.setmode(GPIO.BCM)
+#GPIO.setwarnings(False)
+
+from Adafruit_BBIO.SPI import SPI
+from time import sleep
+
+DC = "P9_15"
+RST = "P9_14"
+LED = "P9_26"
+PEN = "P9_16"
+
+
+
+TFT = TFT24T(SPI, GPIO, landscape=False)
+
+
+
+# Initialize display.
+TFT.initLCD(DC, RST, LED)
+
+TFT.initTOUCH(PEN)
+
+draw = TFT.draw()
+
+TFT.clear((255, 255, 255))
+print("Draw on the screen with a pen/stylus")
+
+while 1:
+    while not TFT.penDown():
+        pass
+
+    pos = TFT.penPosition()
+    print(pos)
+    #print ""
+    x2=pos[0]
+    y2=pos[1]
+
+
+    TFT.penprint((x2,y2), 2, (0,0,0))
+
+
+    sleep(.1)
